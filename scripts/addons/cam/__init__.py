@@ -5,7 +5,19 @@ Import Modules, Register and Unregister  Classes
 
 # Python Standard Library
 import subprocess
+import importlib
 import sys
+
+# Reload all modules to reflect changes during development without restarting Blender
+current_package_prefix = f"{__name__}."
+for name, module in sys.modules.copy().items():
+    if name.startswith(current_package_prefix):
+        try:
+            importlib.reload(module)
+            print(f"Reloaded {name}")
+        except:
+            print(f"Faild reloading, therefore deleting {name}")
+            del sys.modules[name]
 
 # pip Wheels
 import shapely
