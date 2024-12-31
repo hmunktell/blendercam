@@ -158,6 +158,7 @@ class CAM_OPERATION_PROPERTIES_Panel(CAMParentPanel, Panel):
             col.prop(self.op, "pocket_type", text="Type")
             if self.op.pocket_type == "PARALLEL":
                 col.prop(self.op, "parallel_pocket_angle", text="Angle")
+                col.prop(self.op, "skin")
                 subcol = col.column(align=True)
                 subcol.use_property_split = False
                 subcol.prop(self.op, "parallel_pocket_crosshatch", text="Crosshatch")
@@ -165,6 +166,7 @@ class CAM_OPERATION_PROPERTIES_Panel(CAMParentPanel, Panel):
 
             else:
                 col.prop(self.op, "pocket_option")
+                col.prop(self.op, "skin")
                 self.draw_overshoot(col=col)
                 row = col.row()
                 row.use_property_split = False
@@ -214,20 +216,20 @@ class CAM_OPERATION_PROPERTIES_Panel(CAMParentPanel, Panel):
                 header.label(text="A & B Axes")
                 if panel:
                     subheader, subpanel = panel.panel("a_axis", default_closed=True)
-                    subheader.prop(self.op, "enable_A", text="A Axis")
+                    subheader.prop(self.op, "enable_a_axis", text="A Axis")
                     if subpanel:
                         subpanel.enabled = self.op.enable_a_axis
                         col = subpanel.column(align=True)
                         row = col.row()
                         row.use_property_split = True
                         row.prop(self.op, "rotation_a")
-                        col.prop(self.op, "A_along_x")
+                        col.prop(self.op, "a_along_x")
                         if self.op.a_along_x:
                             col.label(text="Ⓐ || Ⓧ  -  Ⓑ || Ⓨ")
                         else:
                             col.label(text="Ⓐ || Ⓨ  -  Ⓑ || Ⓧ")
                     subheader, subpanel = panel.panel("b_axis", default_closed=True)
-                    subheader.prop(self.op, "enable_B", text="B Axis")
+                    subheader.prop(self.op, "enable_b_axis", text="B Axis")
                     if subpanel:
                         subpanel.enabled = self.op.enable_b_axis
                         col = subpanel.column(align=True)
