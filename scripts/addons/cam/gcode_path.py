@@ -395,7 +395,7 @@ def export_gcode_path(filename, vertslist, operations):
             # ie: outputting more than one operation
             # otherwise the machine gets sent back to 0,0 for each operation which is unecessary
             shapes += 1  # Count amount of shapes
-            if i > 0 and vi == 0:
+            if (i > 0 and vi == 0) or (not m.use_position_definitions and vi == 0):
                 continue
             v = vert.co
             # redundant point on line detection
@@ -729,9 +729,9 @@ def check_memory_limit(o):
     if res > limit:
         ratio = res / limit
         o.optimisation.pixsize = o.optimisation.pixsize * sqrt(ratio)
-        o.info.warnings += (
-            f"Memory limit: Sampling Resolution Reduced to {round(o.optimisation.pixsize, 5)}\n"
-        )
+        o.info.warnings += " \n!!! Memory Error !!!\n"
+        o.info.warnings += "Memory Limit Exceeded!\n"
+        o.info.warnings += f"Detail Size Increased to {round(o.optimisation.pixsize, 5)}\n"
         print("Changing Sampling Resolution to %f" % o.optimisation.pixsize)
 
 
