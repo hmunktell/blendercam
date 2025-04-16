@@ -71,9 +71,13 @@ class CAM_MACHINE_Panel(CAMParentPanel, Panel):
 
         # Position Definitions
         if self.level >= 2:
-            header, panel = layout.panel_prop(self.machine, "use_position_definitions")
-            header.label(text="Position Definitions")
+            layout.use_property_split = False
+            header, panel = layout.panel(idname="use_pos_defs", default_closed=True)
+            header.prop(self.machine, "use_position_definitions", text="Position Definitions")
             if panel:
+                panel.enabled = self.machine.use_position_definitions
+                panel.use_property_split = True
+                col = panel.column(align=True)
                 panel.prop(self.machine, "starting_position")
                 panel.prop(self.machine, "mtc_position")
                 panel.prop(self.machine, "ending_position")

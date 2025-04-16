@@ -395,7 +395,7 @@ def export_gcode_path(filename, vertslist, operations):
             # ie: outputting more than one operation
             # otherwise the machine gets sent back to 0,0 for each operation which is unecessary
             shapes += 1  # Count amount of shapes
-            if i > 0 and vi == 0:
+            if (i > 0 and vi == 0) or (not m.use_position_definitions and vi == 0):
                 continue
             v = vert.co
             # redundant point on line detection
