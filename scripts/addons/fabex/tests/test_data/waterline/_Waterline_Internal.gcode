@@ -1,12 +1,11 @@
-(Created with grbl post processor 2024/12/21 15:57)
+(Created with grbl post processor 2025/04/16 21:56)
 G21
 (G-code Generated with Fabex and NC library)
 G17G90
 S12000M03
 G00 Z10.0
 
-G0X0Y0Z10
-X13.491Y13.763
+G0X13.491Y13.763Z10
 G1Z-2.101F500
 X13.533Y13.738F1000
 X13.595Y13.699
