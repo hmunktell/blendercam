@@ -34,9 +34,9 @@ class Creator(nc.Creator):
         self.r = 0
         self.s = AddressPlusMinus("S", fmt=Format(number_of_decimal_places=2), modal=False)
         self.t = None
-        self.x = None
-        self.y = None
-        self.z = None
+        self.x = 0
+        self.y = 0
+        self.z = 0
         self.g0123_modal = False
         self.drill_modal = False
         self.prev_f = ""
